@@ -7,7 +7,7 @@ I decided to make this project in conjuction with SIT378, in which my client had
 
 The solution was then further optimised with threading in Python with the help of [concurrent.future](https://docs.python.org/3/library/concurrent.futures.html) module, which is in-built in Python 3.
 
-## Project Design
+## Project Design and Implementation
 The parallel project was designed while keeping in mind that concurrent.future is mainly used for speedening up IO-Bound tasks, since we are accessing and making requests a large amount of URL's (input), and then extracting information out of them (output). 
 
 1. Preparing the Input (preparing name and URLS of each food item)
@@ -137,3 +137,23 @@ Let’s take a look at how this code works:-
 - `data_fetcher_v2` returns the macronutrientional information of a single food item.
 - `executor.map()` gives results in the order they are submitted, hence, not requiring us to use mutex lock
 - `restaurant_url_list` is passed in , which is a list of all food item URL's extracted previously, instead of looping through each restaurant URL one by one (`restaurant_df['URL'][0] ,restaurant_df['URL'][1],restaurant_df['URL'][2] ...`) 
+
+## Project Evaluation
+
+Here are the timings and evaluation of the [top 10 fast food chains restaurants](https://www.statista.com/statistics/871574/australia-leading-fast-food-restaurant-chains/) as per statista in 2018.
+| Restaurant        |Number of food items| Sequential (seconds)          | Parallel (seconds) | 
+| :---------------: |:------------------:|:--------------------:| :--------:|
+| Mcdonalds         |207| 389.52        | 20.78     |
+| KFC               |88| 96.39            |   5.56     |
+| Subway            |107| 149.94             |    7.88     |
+| Hungry Jacks      |207| 380.93            |    18.09     |
+| Domino's Pizza    |106| 190.74            |    8.65     |
+| Red Rooster       |76| 115.23           |    5.94     |
+| Grill'd           |42| 92.76             |    4.73     |
+| Nandos            |64| 100.80            |    5.18     |
+| Pizza Hut         |83| 120.48           |    7.70     |
+| Noodle Box        |25| 59.69           |    3.97     |
+| <b>Total</b>       |1005|<b> 1693.48   </b>       |   <b> 88.48  </b>   |
+
+## Conclusion
+I was able to save myself 1605 seconds, which is 26.75 minutes, and in the future, if the database gets updated, I would be easily able to update my excel sheets again in 1.47 minutes, which is around <b>20 times</b> faster if I were to use the sequential solution.
