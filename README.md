@@ -157,3 +157,7 @@ Here are the timings and evaluation of the [top 10 fast food chains restaurants]
 
 ## Conclusion
 I was able to save myself 1605 seconds, which is 26.75 minutes, and in the future, if the database gets updated, I would be easily able to update my excel sheets again in 1.47 minutes, which is around <b>20 times</b> faster if I were to use the sequential solution.
+
+## Acknowledgements
+
+Special thanks to [Cedric](https://github.com/Coder-3), another student of SIT315 on introducing me to web-scraping with python
